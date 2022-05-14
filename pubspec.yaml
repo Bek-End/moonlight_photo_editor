@@ -1,0 +1,63 @@
+name: photo_editor_flutter2
+description: A new Flutter project.
+
+publish_to: 'none'
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.16.2 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  cupertino_icons: ^1.0.2
+  flutter_colorpicker: ^1.0.3
+  image_picker: ^0.8.5
+  font_awesome_flutter: ^10.1.0
+  signature: ^5.0.0
+  path_provider: ^2.0.9
+  screenshot: ^1.2.3
+  smooth_page_indicator: ^1.0.0+2
+  flutter_svg: ^1.0.3
+  sliding_up_panel: ^2.0.0+1
+  glass: ^1.0.1+1
+  flutter_native_splash: ^2.1.6
+  google_fonts: ^2.3.2
+  flutter_painter: ^1.0.1
+  gallery_saver: ^2.3.2
+  flutter_phosphor_icons: ^0.0.1+6
+  image_cropper: ^2.0.2
+  share_plus: ^4.0.4
+  syncfusion_flutter_sliders: ^20.1.52
+  photofilters: ^3.0.1
+  is_first_run: ^1.0.0
+  expansion_widget: ^0.0.3
+  url_launcher: ^6.1.2
+  
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+  flutter_launcher_icons: ^0.9.2
+  flutter_lints: ^1.0.0
+
+flutter_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icon/icon.png"
+  remove_alpha_ios: true
+
+flutter:
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/icon/icon.png
+  fonts:
+    - family: Gilroy
+      fonts:
+        - asset: assets/fonts/Gilroy/Gilroy-Regular.ttf
+
+  uses-material-design: true
