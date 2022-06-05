@@ -1,5 +1,6 @@
 import 'dart:io';
 
+import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
@@ -69,7 +70,8 @@ class HomeScreen extends StatelessWidget {
                               title: 'Milikeev Vadim',
                               subtitle: 'Project Manager',
                               instaLink: 'https://www.instagram.com/instagram/',
-                              telegramLink: 'https://t.me/dR0n19',
+                              telegramLink:
+                                  'https://i.pinimg.com/originals/44/e2/42/44e2422c7ecf1e9234c7fa4cdf03f060.jpg',
                             ),
                             SizedBox(
                               height: 12,
@@ -126,19 +128,38 @@ class HomeScreen extends StatelessWidget {
                 child: SvgPicture.asset('assets/icons/camera_icon.svg'),
                 subtitle: 'Camera',
                 onPressed: () async {
-                  final image = await ImagePicker().pickImage(
-                    source: ImageSource.camera,
-                  );
-                  if (image != null) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => MainPageScreen(
-                          image: File(
-                            image.path,
+                  if (Platform.isMacOS) {
+                    FilePickerResult? result = await FilePicker.platform.pickFiles(
+                      type: FileType.image,
+                      allowedExtensions: ['jpg', 'jpeg', 'png'],
+                    );
+                    if (result != null) {
+                      File file = File(result.files.single.path!);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MainPageScreen(
+                            image: file,
                           ),
                         ),
-                      ),
+                      );
+                    } else {
+                      // User canceled the picker
+                    }
+                  } else {
+                    final image = await ImagePicker().pickImage(
+                      source: ImageSource.camera,
                     );
+                    if (image != null) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MainPageScreen(
+                            image: File(
+                              image.path,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
                   }
                 },
               ),
@@ -146,19 +167,38 @@ class HomeScreen extends StatelessWidget {
                 child: SvgPicture.asset('assets/icons/gallery_icon.svg'),
                 subtitle: 'Gallery',
                 onPressed: () async {
-                  final image = await ImagePicker().pickImage(
-                    source: ImageSource.gallery,
-                  );
-                  if (image != null) {
-                    Navigator.of(context).push(
-                      MaterialPageRoute(
-                        builder: (context) => MainPageScreen(
-                          image: File(
-                            image.path,
+                  if (Platform.isMacOS) {
+                    FilePickerResult? result = await FilePicker.platform.pickFiles(
+                      type: FileType.image,
+                      allowedExtensions: ['jpg', 'jpeg', 'png'],
+                    );
+                    if (result != null) {
+                      File file = File(result.files.single.path!);
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MainPageScreen(
+                            image: file,
                           ),
                         ),
-                      ),
+                      );
+                    } else {
+                      // User canceled the picker
+                    }
+                  } else {
+                    final image = await ImagePicker().pickImage(
+                      source: ImageSource.gallery,
                     );
+                    if (image != null) {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => MainPageScreen(
+                            image: File(
+                              image.path,
+                            ),
+                          ),
+                        ),
+                      );
+                    }
                   }
                 },
               ),
