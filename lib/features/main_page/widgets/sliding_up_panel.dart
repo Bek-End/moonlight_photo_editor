@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_phosphor_icons/flutter_phosphor_icons.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -34,18 +36,19 @@ class _SlidingUpPanelWidgetState extends State<SlidingUpPanelWidget> with Automa
           ),
           child: Wrap(
             children: [
-              RoundSelectableWidget<SelectableButtons>(
-                value: SelectableButtons.crop,
-                groupValue: currVal,
-                onPressed: (e) {
-                  setState(() {
-                    currVal = e;
-                  });
-                  widget.onTap(e);
-                },
-                child: SvgPicture.asset('assets/icons/crop_icon.svg'),
-                subtitle: 'Crop',
-              ),
+              if (!Platform.isMacOS)
+                RoundSelectableWidget<SelectableButtons>(
+                  value: SelectableButtons.crop,
+                  groupValue: currVal,
+                  onPressed: (e) {
+                    setState(() {
+                      currVal = e;
+                    });
+                    widget.onTap(e);
+                  },
+                  child: SvgPicture.asset('assets/icons/crop_icon.svg'),
+                  subtitle: 'Crop',
+                ),
               RoundSelectableWidget<SelectableButtons>(
                 value: SelectableButtons.text,
                 groupValue: currVal,

@@ -566,10 +566,11 @@ class _MainPageScreenState extends State<MainPageScreen> {
                       onPressed: controller.canUndo ? undo : null,
                     ),
                   ),
-                  CustomTextButton(
-                    child: SvgPicture.asset('assets/icons/save_icon.svg'),
-                    onPressed: renderAndDisplayImage,
-                  ),
+                  if (!Platform.isMacOS)
+                    CustomTextButton(
+                      child: SvgPicture.asset('assets/icons/save_icon.svg'),
+                      onPressed: renderAndDisplayImage,
+                    ),
                   CustomTextButton(
                     child: SvgPicture.asset('assets/icons/share_icon.svg'),
                     onPressed: () async {

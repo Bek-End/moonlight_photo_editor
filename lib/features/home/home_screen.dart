@@ -122,30 +122,13 @@ class HomeScreen extends StatelessWidget {
         ),
         child: SafeArea(
           child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              RoundButton(
-                child: SvgPicture.asset('assets/icons/camera_icon.svg'),
-                subtitle: 'Camera',
-                onPressed: () async {
-                  if (Platform.isMacOS) {
-                    FilePickerResult? result = await FilePicker.platform.pickFiles(
-                      type: FileType.image,
-                      allowedExtensions: ['jpg', 'jpeg', 'png'],
-                    );
-                    if (result != null) {
-                      File file = File(result.files.single.path!);
-                      Navigator.of(context).push(
-                        MaterialPageRoute(
-                          builder: (context) => MainPageScreen(
-                            image: file,
-                          ),
-                        ),
-                      );
-                    } else {
-                      // User canceled the picker
-                    }
-                  } else {
+              if (!Platform.isMacOS)
+                RoundButton(
+                  child: SvgPicture.asset('assets/icons/camera_icon.svg'),
+                  subtitle: 'Camera',
+                  onPressed: () async {
                     final image = await ImagePicker().pickImage(
                       source: ImageSource.camera,
                     );
@@ -160,9 +143,8 @@ class HomeScreen extends StatelessWidget {
                         ),
                       );
                     }
-                  }
-                },
-              ),
+                  },
+                ),
               RoundButton(
                 child: SvgPicture.asset('assets/icons/gallery_icon.svg'),
                 subtitle: 'Gallery',

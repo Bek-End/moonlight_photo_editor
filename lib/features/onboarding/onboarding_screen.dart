@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:photo_editor_flutter2/core/colors/colors.dart';
 import 'package:photo_editor_flutter2/core/widgets/buttons/skip_button.dart';
@@ -46,13 +48,37 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
               flex: 4,
               child: PageView(
                 controller: pageController,
-                children: const [
-                  OnboardingWidget(
-                    text: 'Tap the icons to edit photos or draw something on a canvas',
-                    image: 'assets/images/1.png',
-                  ),
-                  OnboardingWidget(text: 'Select tools and start drawing ', image: 'assets/images/2.png'),
-                  OnboardingWidget(text: 'Save and share', image: 'assets/images/3.png'),
+                children: [
+                  if (Platform.isMacOS)
+                    const OnboardingWidget(
+                      text: 'Tap the icons to edit photos or draw something on a canvas',
+                      image: 'assets/images/1-macos.png',
+                    )
+                  else
+                    const OnboardingWidget(
+                      text: 'Tap the icons to edit photos or draw something on a canvas',
+                      image: 'assets/images/1.png',
+                    ),
+                  if (Platform.isMacOS)
+                    const OnboardingWidget(
+                      text: 'Select tools and start drawing ',
+                      image: 'assets/images/2-macos.png',
+                    )
+                  else
+                    const OnboardingWidget(
+                      text: 'Select tools and start drawing ',
+                      image: 'assets/images/2.png',
+                    ),
+                  if (Platform.isMacOS)
+                    const OnboardingWidget(
+                      text: 'Save and share',
+                      image: 'assets/images/3-macos.png',
+                    )
+                  else
+                    const OnboardingWidget(
+                      text: 'Save and share',
+                      image: 'assets/images/3.png',
+                    )
                 ],
               ),
             ),
